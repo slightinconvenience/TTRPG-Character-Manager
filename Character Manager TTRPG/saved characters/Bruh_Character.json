@@ -1,0 +1,100 @@
+{
+    "personal_details": {
+        "name": "Bruh",
+        "age": 23
+    },
+    "ancestry": {
+        "name": "Framed",
+        "attribute_modifiers": {
+            "prowess": 1
+        },
+        "special_ability": [
+            "Death Avoidance"
+        ],
+        "health_modifier": {
+            "physical_harm_threshold": 2
+        }
+    },
+    "profession": {
+        "name": "Criminal",
+        "ability": [
+            "Warrant Boon"
+        ]
+    },
+    "community": {
+        "name": "Slyborne",
+        "ability": [
+            "Criminal Insight"
+        ]
+    },
+    "path": {
+        "name": "Rogue",
+        "health_modifier": {
+            "physical_harm_threshold": 1
+        },
+        "path_passives": [
+            "Trickery",
+            "Hidden Knife"
+        ],
+        "path_moves": [
+            "Tricks of the Trade",
+            "Sneak Attack"
+        ],
+        "damage_die": {
+            "physical_damage_die": "1d6"
+        }
+    },
+    "level": 1,
+    "attributes": {
+        "basic_attributes": {
+            "prowess": 2,
+            "might": 1,
+            "presence": 0
+        },
+        "special_attributes": {
+            "power": 1,
+            "armor_uses": 1
+        },
+        "harm_tracks": {
+            "physical": [
+                4,
+                4
+            ],
+            "mental": [
+                4,
+                4
+            ],
+            "spiritual": [
+                3,
+                3
+            ],
+            "physical_harm_threshold": 1
+        },
+        "wound_thresholds": {
+            "minor": 5,
+            "major": 7,
+            "severe": 9
+        },
+        "damage_dice": {
+            "physical_damage_die": "1d6"
+        },
+        "resources": {
+            "mana": {
+                "current": 0,
+                "max": 10
+            },
+            "mercy": {
+                "current": 0,
+                "max": 10
+            },
+            "wrath": {
+                "current": 0,
+                "max": 10
+            },
+            "trickery_dice": {
+                "current": 0,
+                "max": 5
+            }
+        }
+    }
+}

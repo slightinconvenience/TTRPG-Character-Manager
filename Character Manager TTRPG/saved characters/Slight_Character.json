@@ -1,0 +1,100 @@
+{
+    "personal_details": {
+        "name": "Slight",
+        "age": 23
+    },
+    "ancestry": {
+        "name": "Humans",
+        "attribute_modifiers": {
+            "might": 1
+        },
+        "special_ability": [
+            "Warrant Expertise"
+        ],
+        "health_modifier": {
+            "mental_harm": 1
+        }
+    },
+    "profession": {
+        "name": "Martial",
+        "ability": {
+            "physical_wound_threshold": 1
+        }
+    },
+    "community": {
+        "name": "Highborne",
+        "ability_or_modifier": [
+            "Noble Parley"
+        ]
+    },
+    "path": {
+        "name": "Warrior",
+        "health_modifier": {
+            "physical_harm": 2
+        },
+        "path_passives": [
+            "Fighting Style"
+        ],
+        "path_moves": [
+            "Reckless Attack",
+            "My Life for Yours"
+        ],
+        "damage_die": {
+            "physical_damage_die": "1d6"
+        }
+    },
+    "level": 1,
+    "attributes": {
+        "basic_attributes": {
+            "prowess": 1,
+            "might": 2,
+            "presence": 0
+        },
+        "special_attributes": {
+            "power": 1,
+            "armor_uses": 1
+        },
+        "harm_tracks": {
+            "physical": [
+                4,
+                4
+            ],
+            "mental": [
+                4,
+                4
+            ],
+            "spiritual": [
+                3,
+                3
+            ],
+            "mental_harm": 1,
+            "physical_harm": 2
+        },
+        "wound_thresholds": {
+            "minor": 5,
+            "major": 7,
+            "severe": 9
+        },
+        "damage_dice": {
+            "physical_damage_die": "1d6"
+        },
+        "resources": {
+            "mana": {
+                "current": 0,
+                "max": 10
+            },
+            "mercy": {
+                "current": 0,
+                "max": 10
+            },
+            "wrath": {
+                "current": 0,
+                "max": 10
+            },
+            "trickery_dice": {
+                "current": 0,
+                "max": 5
+            }
+        }
+    }
+}
