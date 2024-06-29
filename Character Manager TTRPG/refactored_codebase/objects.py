@@ -53,26 +53,44 @@ class Path:
 
 class Character:
     # class to represent a character 
-    def __init__(self, name, age, level, ancestry, profession, community, path, id=None):
-        self.id = id
+    def __init__(self, char_info, char_attributes, id=None):
+        self.id = id # database id of character. obsolete for now 
+        self.name = char_info.name
+        self.age = char_info.age
+        self.level = char_info.level
+        self.xp = 0
+        self.ancestry = char_info.ancestry
+        self.profession = char_info.profession
+        self.community = char_info.community
+        self.path = char_info.path
+        self.abilities = {} 
+        self.inventory = {}
+        self.moves = {}
+        self.basic_attributes = char_attributes.basic_attributes
+        self.special_attributes = char_attributes.special_attributes
+        self.harm_tracks = char_attributes.harm_tracks
+        self.wound_thresholds = char_attributes.wound_thresholds
+        self.damage_dice = char_attributes.damage_dice
+        # the below is not used until the character has the relevant path giving them access to those resources. needs more dev :) 
+        #self.mana_resources = {"Flame": 0, "Mist": 0, "Stone": 0, "Will": 0, "Wind": 0}
+        #self.devotion_resources = {"Mercy": 0, "Wrath": 0} 
+        #self.trickery_resources = {"Dice": "1d4", "Max Uses": 1}
+
+class CharacterInfo: 
+    # class to represent the basioc infor of a character 
+    def __init__(self, name, age, level, ancestry, profession, community, path):
         self.name = name
         self.age = age
         self.level = level
-        self.xp = 0
         self.ancestry = ancestry
         self.profession = profession
         self.community = community
         self.path = path
-        self.abilities = {} 
-        self.inventory = {}
-        self.moves = {}
-        self.basic_attributes = {"Prowess": 0, "Might": 0, "Presence": 0}
-        self.special_attributes = {"Power": 1, "Armor Uses": 1, "Armor": 0}
-        self.harm_tracks = {"Physical": 4, "Mental": 4, "Spiritual": 3}
-        self.wound_thresholds = {"Light": 5, "Moderate": 7, "Severe": 9}
-        self.damage_dice = {"Physical": "1d4", "Mental": "1d4", "Spiritual": "1d4"}
-        self.mana_resources = {"Flame": 0, "Mist": 0, "Stone": 0, "Will": 0, "Wind": 0}
-        self.devotion_resources = {"Mercy": 0, "Wrath": 0} 
-        self.tricker_resources = {"Dice": "1d4", "Max Uses": 1}
 
-
+class CharacterAttributes:
+    def __init__(self, basic_attributes={"Prowess": 0, "Might": 0, "Presence": 0}, special_attributes={"Power": 1, "Armor Uses": 1, "Armor": 0}, harm_tracks={"Physical": 4, "Mental": 4, "Spiritual": 3}, wound_thresholds={"Light": 5, "Moderate": 7, "Severe": 9}, damage_dice={"Physical": "1d4", "Mental": "1d4", "Spiritual": "1d4"}):
+        self.basic_attributes = basic_attributes
+        self.special_attributes = special_attributes
+        self.harm_tracks = harm_tracks
+        self.wound_thresholds = wound_thresholds
+        self.damage_dice = damage_dice 
