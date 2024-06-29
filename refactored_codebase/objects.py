@@ -26,6 +26,26 @@ class Ancestry:
                 return ancestry_data
             else:
                 return None
+            
+    def ancestry_update(character, ancestry_data):
+        # update character with ancestry data
+        character.ancestry = ancestry_data['name']
+
+        for key, value in ancestry_data['basic_attributes'].items():
+            character.basic_attributes[key] += value
+
+        if 'harm_tracks' in ancestry_data and ancestry_data['harm_tracks']:
+                for key, value in ancestry_data['harm_tracks'].items():
+                    if key in character.harm_tracks:
+                        character.harm_tracks[key] += value
+                    else:
+                        character.harm_tracks[key] = value
+
+        for key, value in ancestry_data['damage_reduction'].items():
+            if key in character.damage_reduction:
+                character.damage_reduction[key] += value
+            else:
+                character.damage_reduction[key] = value
 
 class Profession:
     # class to represent the profession of a character
@@ -44,12 +64,32 @@ class Profession:
             else:
                 return None
             
+    def profession_update(character, profession_data):
+        # update character with profession data
+        character.profession = profession_data['name']
+        # Check if abilities is not empty
+        if profession_data['abilities']:
+            # Directly add the ability as a key with a value, e.g., True
+            character.abilities[profession_data['abilities']] = True
+
+        # Assuming damage_reduction is handled correctly as per previous example
+        for key, value in profession_data['damage_reduction'].items():
+            if key in character.damage_reduction:
+                character.damage_reduction[key] += value
+            else:
+                character.damage_reduction[key] = value
+            
 class Community: 
     # class to represent the community of a character 
     def __init__(self, name, abilities): 
         self.id = id # id of the community
         self.name = name # name of the community
-        self.abilities = abilities # dictionary of abilities
+        self.abilities = abilities # dictionary of abilities 
+
+    def community_update(character, community_data):
+        # update character with community data
+        character.community = community_data['name']
+        character.abilities.update(community_data['abilities'])
 
 class Path: 
     # class to represent the path of a character 
@@ -66,6 +106,17 @@ class Path:
 
         # Handle health modifiers
         self.harm_tracks.update(health_modifier) # update harm tracks with health modifier
+
+    def path_update(character, path_data):
+        # update character with path data
+        character.path = path_data['name']
+        character.basic_attributes.update(path_data['basic_attributes'])
+        character.special_attributes.update(path_data['special_attributes'])
+        character.harm_tracks.update(path_data['harm_tracks'])
+        character.wound_thresholds.update(path_data['wound_thresholds'])
+        character.damage_die = path_data['damage_die']
+        character.path_passives.update(path_data['path_passives'])
+        character.path_moves.update(path_data['path_moves'])
 
 class Character:
     # class to represent a character 

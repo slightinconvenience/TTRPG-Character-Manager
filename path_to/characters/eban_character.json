@@ -1,0 +1,40 @@
+{
+    "name": "eban",
+    "age": 1,
+    "level": 1,
+    "xp": 0,
+    "ancestry": "Elves",
+    "profession": "Criminal",
+    "community": "Highborne",
+    "path": "Mage",
+    "moves": {},
+    "abilities": {
+        "Criminal Contacts": true
+    },
+    "inventory": {},
+    "basic_attributes": {
+        "Prowess": 1,
+        "Might": 0,
+        "Presence": 2
+    },
+    "special_attributes": {
+        "Power": 1,
+        "Armor Uses": 1,
+        "Armor": 0
+    },
+    "harm_tracks": {
+        "Physical": 4,
+        "Mental": 4,
+        "Spiritual": 3
+    },
+    "wound_thresholds": {
+        "Light": 5,
+        "Moderate": 7,
+        "Severe": 9
+    },
+    "damage_dice": {
+        "Physical": "1d4",
+        "Mental": "1d4",
+        "Spiritual": "1d4"
+    }
+}

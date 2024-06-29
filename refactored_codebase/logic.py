@@ -141,10 +141,10 @@ def create_character():
     new_character = objects.Character(new_character_info, new_character_attributes)
 
     # update character with selected options
-    ancestry_update(new_character, ancestry_data)
-    profession_update(new_character, profession_data)
-    #community_update(new_character, community_data)
-    #path_update(new_character, path_data)
+    Ancestry.ancestry_update(new_character, ancestry_data)
+    Profession.profession_update(new_character, profession_data)
+    #Community.community_update(new_character, community_data)
+    #Path.path_update(new_character, path_data)
     
     # choose attribute improvements 
     new_character.basic_attributes = attribute_improvements(new_character)
