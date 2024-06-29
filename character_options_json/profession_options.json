@@ -1,0 +1,32 @@
+{
+    "Academic": {
+        "name": "Academic",
+        "abilities": "Research Boon",
+        "damage_reduction": {}
+      },
+    "Common": {
+        "name": "Common",
+        "abilities": "Extra Bond",
+        "damage_reduction": {}
+      },
+    "Criminal": {
+        "name": "Criminal",
+        "abilities": "Criminal Contacts",
+        "damage_reduction": {}
+      },
+    "Martial": {
+        "name": "Martial",
+        "abilities": "",
+        "damage_reduction": {"Physical": 1}
+      },
+    "Religious": {
+        "name": "Religious",
+        "abilities": "",
+        "damage_reduction": {"Spiritual": 1}
+      },
+    "Wilderness": {
+        "name": "Wilderness",
+        "abilities": "Journey Boon",
+        "damage_reduction": {}
+      }
+}

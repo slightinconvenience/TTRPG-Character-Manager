@@ -1,0 +1,65 @@
+{
+    "Drow": {
+      "name": "Drow",
+      "basic_attributes": {"Presence": 1},
+      "special_ability": "Underground Expertise",
+      "harm_tracks": {"Mental": 1},
+      "damage_reduction": {}
+    },
+    "Dwarves": {
+      "name": "Dwarves",
+      "basic_attributes": {"Might": 1},
+      "special_ability": "Social Drink",
+      "harm_tracks": {"Physical": 1},
+      "damage_reduction": {}
+    },
+    "Elves": {
+      "name": "Elves",
+      "basic_attributes": {"Presence": 1},
+      "special_ability": "Historical Insight",
+      "harm_tracks": {},
+      "damage_reduction": {"Mental": 2}
+    },
+    "Faeries": {
+      "name": "Faeries",
+      "basic_attributes": {"Prowess": 1},
+      "special_ability": "Extra Reality",
+      "harm_tracks": {},
+      "damage_reduction": {"Spiritual": 2}
+    },
+    "Framed": {
+      "name": "Framed",
+      "basic_attributes": {"Prowess": 1},
+      "special_ability": "Death Avoidance",
+      "harm_tracks": {},
+      "damage_reduction": {"Physical": 2}
+    },
+    "Halflings": {
+      "name": "Halflings",
+      "basic_attributes": {"Prowess": 1},
+      "special_ability": "Hospitality",
+      "harm_tracks": {"Physical": 1, "Mental": 1, "Spiritual": -1},
+      "damage_reduction": {}
+    },
+    "Humans": {
+      "name": "Humans",
+      "basic_attributes": {"Might": 1},
+      "special_ability": "Warrant Expertise",
+      "harm_tracks": {"Mental": 1},
+      "damage_reduction": {}
+    },
+    "Orcs": {
+      "name": "Orcs",
+      "basic_attributes": {"Might": 1},
+      "special_ability": "Might Last Breath",
+      "harm_tracks": {"Physical": 1, "Mental": -1},
+      "damage_reduction": {}
+    },
+    "Tieflings": {
+      "name": "Tieflings",
+      "basic_attributes": {"Prowess": 1},
+      "special_ability": "Enhanced Recovery",
+      "harm_tracks": {"Spiritual": 1},
+      "damage_reduction": {}
+    }
+  }

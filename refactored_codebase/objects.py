@@ -8,10 +8,6 @@ import os
 # imports from custom libraries 
 from attributes2 import BasicAttributes, SpecialAttributes, HarmTracks, WoundThresholds, DamageDice 
 
-# imports from third party libraries
-
-# imports from local libraries
-
 class Ancestry: 
     # class to represent the ancestry of a character 
     def __init__(self, name, basic_attributes, special_ability, harm_tracks, wound_thresholds):
@@ -21,14 +17,34 @@ class Ancestry:
         self.harm_tracks = harm_tracks # dictionary of harm track modifiers
         self.wound_thresholds = wound_thresholds # dictionary of wound threshold modifiers 
 
+    def load_ancestry_data(ancestry_name):
+        with open('character_options_json/ancestry_options.json', 'r') as file:
+            ancestries = json.load(file)
+            # Access the ancestry data by key
+            ancestry_data = ancestries.get(ancestry_name)
+            if ancestry_data:
+                return ancestry_data
+            else:
+                return None
+
 class Profession:
     # class to represent the profession of a character
-    def __init__(self, name, abilities, special_attributes=None):
+    def __init__(self, name, abilities, damage_reduction):
         self.name = name # name of the profession
         self.abilities = abilities  # dictionary of abilities 
-        self.special_attributes = special_attributes if special_attributes else SpecialAttributes() # dictionary of special attributes and their modifiers if applicable, otherwise, basic special attributes are created
+        self.damage_reduction = damage_reduction # dictionary of damage reduction modifiers
 
-class Communtiy: 
+    def load_profession_data(profession_name):
+        with open('character_options_json/profession_options.json', 'r') as file:
+            professions = json.load(file)
+            # Access the profession data by key
+            profession_data = professions.get(profession_name)
+            if profession_data:
+                return profession_data
+            else:
+                return None
+            
+class Community: 
     # class to represent the community of a character 
     def __init__(self, name, abilities): 
         self.id = id # id of the community
@@ -70,6 +86,7 @@ class Character:
         self.special_attributes = char_attributes.special_attributes
         self.harm_tracks = char_attributes.harm_tracks
         self.wound_thresholds = char_attributes.wound_thresholds
+        self.damage_reduction = char_attributes.damage_reduction
         self.damage_dice = char_attributes.damage_dice
         # the below is not used until the character has the relevant path giving them access to those resources. needs more dev :) 
         #self.mana_resources = {"Flame": 0, "Mist": 0, "Stone": 0, "Will": 0, "Wind": 0}
@@ -88,9 +105,10 @@ class CharacterInfo:
         self.path = path
 
 class CharacterAttributes:
-    def __init__(self, basic_attributes={"Prowess": 0, "Might": 0, "Presence": 0}, special_attributes={"Power": 1, "Armor Uses": 1, "Armor": 0}, harm_tracks={"Physical": 4, "Mental": 4, "Spiritual": 3}, wound_thresholds={"Light": 5, "Moderate": 7, "Severe": 9}, damage_dice={"Physical": "1d4", "Mental": "1d4", "Spiritual": "1d4"}):
+    def __init__(self, basic_attributes={"Prowess": 0, "Might": 0, "Presence": 0}, special_attributes={"Power": 1, "Armor Uses": 1, "Armor": 0}, harm_tracks={"Physical": 4, "Mental": 4, "Spiritual": 3}, wound_thresholds={"Light": 5, "Moderate": 7, "Severe": 9}, damage_reduction={"Physical": 0, "Mental": 0, "Spiritual": 0}, damage_dice={"Physical": "1d4", "Mental": "1d4", "Spiritual": "1d4"}):
         self.basic_attributes = basic_attributes
         self.special_attributes = special_attributes
         self.harm_tracks = harm_tracks
         self.wound_thresholds = wound_thresholds
+        self.damage_reduction = damage_reduction
         self.damage_dice = damage_dice 

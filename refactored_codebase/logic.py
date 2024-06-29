@@ -9,7 +9,8 @@ import os
 # imports from custom libraries 
 import character_options 
 import objects 
-import attributes2 
+from objects import Ancestry, Profession, Community, Path
+from update_methods import ancestry_update, profession_update, community_update, path_update
 
 # imports from third party libraries
 
@@ -67,17 +68,22 @@ def print_character_details(character):
         for threshold, value in character.wound_thresholds.items():
             if value is not None:
                 print(f"{threshold.capitalize()}: {value}")
+    if character.damage_reduction:
+        print("\nDamage Reduction:")
+        for reduction, value in character.damage_reduction.items():
+            if value:
+                print(f"{reduction.capitalize()}: {value}")
     if character.damage_dice:
         print("\nDamage Dice:")
         for dice, value in character.damage_dice.items():
             if value is not None:
                 print(f"{dice.capitalize()}: {value}")
 
-def attribute_improvements():
+def attribute_improvements(character):
     # advanced function to dynamically handle attribute improvements
     print("\nYou can increase two of the three basic attributes (Prowess, Might, Presence) by 1.")
     print("Choose the first attribute to increase:")
-    attributes = {"Prowess": 0, "Might": 0, "Presence": 0}
+    attributes = character.basic_attributes
     # display attribute choices
     for index, attribute in enumerate(attributes, 1):
         print(f"{index}. {attribute}")
@@ -123,15 +129,25 @@ def create_character():
     selected_community = character_options.community_options()
     selected_path = character_options.path_options()
 
+    # pull data from files for choices made 
+    ancestry_data = Ancestry.load_ancestry_data(selected_ancestry)
+    profession_data = Profession.load_profession_data(selected_profession)
+    #community_data = get_community_data(selected_community)
+    #path_data = get_path_data(selected_path)
+
     # create character instance with selected options
     new_character_info = objects.CharacterInfo(name, age, level, selected_ancestry, selected_profession, selected_community, selected_path)
     new_character_attributes = objects.CharacterAttributes()
     new_character = objects.Character(new_character_info, new_character_attributes)
-    # i need the elections for ancestry, profession, community, and path to pull the data and place it into the character object
-    # i suppose this means the objects need to be refactored to account for this data being passed in so it accuratly represents the choice 
 
+    # update character with selected options
+    ancestry_update(new_character, ancestry_data)
+    profession_update(new_character, profession_data)
+    #community_update(new_character, community_data)
+    #path_update(new_character, path_data)
+    
     # choose attribute improvements 
-    new_character.basic_attributes = attribute_improvements()
+    new_character.basic_attributes = attribute_improvements(new_character)
 
     # print character information
     print("\nCharacter created successfully!")

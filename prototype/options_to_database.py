@@ -7,6 +7,8 @@ def db_connection():
 
 # basic add and update methods 
 
+# function that takes the data of all ancestries and adds them to a single json file
+
 def add_ancestry(name, basic_attributes, special_ability, harm_tracks, wound_thresholds):
     conn = db_connection()
     cursor = conn.cursor()
@@ -224,7 +226,7 @@ def add_criminal_profession():
 
 def add_martial_profession():
         name = 'Martial'
-        abilities = 'Placeholder1'
+        abilities = ''
         special_attributes = {} 
         
         add_profession(name, abilities, special_attributes) 
