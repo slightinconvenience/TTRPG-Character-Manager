@@ -329,6 +329,8 @@ def add_wildborne_community():
 
         add_community(name, ability_or_modifier, special_attributes)
 
+# list containing names of all communities 
+communities = ['Desertborne', 'Groveborne', 'Highborne', 'Loreborne', 'Orderborne', 'Ridgeborne', 'Skyborne', 'Seaborne', 'Slyborne', 'Underborne', 'Wanderborne', 'Wildborne']
 # path specific methods 
 
 def add_mage_path(): 

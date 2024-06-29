@@ -69,7 +69,7 @@ class HarmTracks:
 # class to represent wound thresholds of a character
 class WoundThresholds:
     # class to represent the wound thresholds of a character
-    def __init__(self, light=4, moderate=8, severe=12):
+    def __init__(self, light=5, moderate=7, severe=9):
         self.light = light
         self.moderate = moderate
         self.severe = severe
@@ -86,7 +86,7 @@ class WoundThresholds:
         return getattr(self, attribute_name, None)
     
 # class to represent the damage die of a character
-class DamageDie:
+class DamageDice:
     # class to represent the damage die of a character
     def __init__(self, physical='1d4', mental='1d4', spiritual='1d4'):
         self.physical = physical

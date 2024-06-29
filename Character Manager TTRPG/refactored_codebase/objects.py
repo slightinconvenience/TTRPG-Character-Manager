@@ -6,6 +6,7 @@ import sqlite3
 import os 
 
 # imports from custom libraries 
+from attributes2 import BasicAttributes, SpecialAttributes, HarmTracks, WoundThresholds, DamageDice 
 
 # imports from third party libraries
 
@@ -52,17 +53,26 @@ class Path:
 
 class Character:
     # class to represent a character 
-    def __init__(self, name, age, ancestry, profession, community, path, id=None):
+    def __init__(self, name, age, level, ancestry, profession, community, path, id=None):
         self.id = id
         self.name = name
         self.age = age
+        self.level = level
+        self.xp = 0
         self.ancestry = ancestry
         self.profession = profession
         self.community = community
         self.path = path
-        self.abilities = [] 
-        self.basic_attributes = BasicAttributes()
-        self.special_attributes = SpecialAttributes()
-        self.harm_tracks = HarmTracks()
-        self.wound_thresholds = WoundThresholds()
-        self.damage_dice = DamageDice()
+        self.abilities = {} 
+        self.inventory = {}
+        self.moves = {}
+        self.basic_attributes = {"Prowess": 0, "Might": 0, "Presence": 0}
+        self.special_attributes = {"Power": 1, "Armor Uses": 1, "Armor": 0}
+        self.harm_tracks = {"Physical": 4, "Mental": 4, "Spiritual": 3}
+        self.wound_thresholds = {"Light": 5, "Moderate": 7, "Severe": 9}
+        self.damage_dice = {"Physical": "1d4", "Mental": "1d4", "Spiritual": "1d4"}
+        self.mana_resources = {"Flame": 0, "Mist": 0, "Stone": 0, "Will": 0, "Wind": 0}
+        self.devotion_resources = {"Mercy": 0, "Wrath": 0} 
+        self.tricker_resources = {"Dice": "1d4", "Max Uses": 1}
+
+
