@@ -10,7 +10,7 @@ import os
 import character_options 
 import objects 
 from objects import Ancestry, Profession, Community, Path
-from update_methods import ancestry_update, profession_update, community_update, path_update
+#from update_methods import ancestry_update, profession_update, community_update, path_update
 
 # imports from third party libraries
 
@@ -83,7 +83,7 @@ def attribute_improvements(character):
     # advanced function to dynamically handle attribute improvements
     print("\nYou can increase two of the three basic attributes (Prowess, Might, Presence) by 1.")
     print("Choose the first attribute to increase:")
-    attributes = character.basic_attributes
+    attributes = character.attributes.basic_attributes
     # display attribute choices
     for index, attribute in enumerate(attributes, 1):
         print(f"{index}. {attribute}")
@@ -132,7 +132,7 @@ def create_character():
     # pull data from files for choices made 
     ancestry_data = Ancestry.load_ancestry_data(selected_ancestry)
     profession_data = Profession.load_profession_data(selected_profession)
-    #community_data = get_community_data(selected_community)
+    community_data = Community.load_community_data(selected_community)
     #path_data = get_path_data(selected_path)
 
     # create character instance with selected options
@@ -143,7 +143,7 @@ def create_character():
     # update character with selected options
     Ancestry.ancestry_update(new_character, ancestry_data)
     Profession.profession_update(new_character, profession_data)
-    #Community.community_update(new_character, community_data)
+    Community.community_update(new_character, community_data)
     #Path.path_update(new_character, path_data)
     
     # choose attribute improvements 
@@ -151,7 +151,7 @@ def create_character():
 
     # print character information
     print("\nCharacter created successfully!")
-    print_character_details(new_character)
+    objects.Character.print_character_data(new_character)
 
     # save character to file
     choice = input("Would you like to save {new_character.name} to a file? [y/n]: ").lower()
@@ -163,31 +163,39 @@ def create_character():
         return None 
 
 # save character function 
+import os
+import json
+
 def save_character(character):
     # Ensure the 'characters' directory exists
     directory = 'path_to/characters'
     os.makedirs(directory, exist_ok=True)
     # serialize the character object to JSON
     character_data = {
-        "name": character.name,
-        "age": character.age,
-        "level": character.level,
+        "info": {
+            "name": character.info.name,
+            "age": character.info.age,
+            "level": character.info.level,
+            "ancestry": character.info.ancestry,
+            "profession": character.info.profession,
+            "community": character.info.community,
+            "path": character.info.path
+        },
+        "attributes": {
+            "basic_attributes": character.attributes.basic_attributes,
+            "special_attributes": character.attributes.special_attributes,
+            "harm_tracks": character.attributes.harm_tracks,
+            "wound_thresholds": character.attributes.wound_thresholds,
+            "damage_reduction": character.attributes.damage_reduction,
+            "damage_dice": character.attributes.damage_dice
+        },
         "xp": character.xp,
-        "ancestry": character.ancestry,
-        "profession": character.profession,
-        "community": character.community,
-        "path": character.path,
-        "moves": character.moves,
         "abilities": character.abilities,
         "inventory": character.inventory,
-        "basic_attributes": character.basic_attributes,
-        "special_attributes": character.special_attributes,
-        "harm_tracks": character.harm_tracks,
-        "wound_thresholds": character.wound_thresholds,
-        "damage_dice": character.damage_dice
+        "moves": character.moves
     }
     # create file name for character 
-    filename = os.path.join(directory, f"{character.name.replace(' ', '_').lower()}_character.json")
+    filename = os.path.join(directory, f"{character.info.name.replace(' ', '_').lower()}_character.json")
     # save character data to json file
     try:
         with open(filename, "w") as file:
@@ -197,10 +205,10 @@ def save_character(character):
         print(f"An error occurred while saving the character: {e}")
     
 # load character function
-def load_character(character):
+def load_character(character_name):
     # Specify the directory where character files are stored
     directory = 'path_to/characters'
-    filename = os.path.join(directory, f"{character.replace(' ', '_').lower()}_character.json")
+    filename = os.path.join(directory, f"{character_name.replace(' ', '_').lower()}_character.json")
     # load character data from json file
     try: 
         with open(filename, "r") as file:
@@ -208,22 +216,30 @@ def load_character(character):
 
         # create character instance from loaded data
         loaded_character_info = objects.CharacterInfo(
-            character_data["name"],
-            character_data["age"],
-            character_data["level"],
-            character_data["ancestry"],
-            character_data["profession"],
-            character_data["community"],
-            character_data["path"]
+            character_data["info"]["name"],
+            character_data["info"]["age"],
+            character_data["info"]["level"],
+            character_data["info"]["ancestry"],
+            character_data["info"]["profession"],
+            character_data["info"]["community"],
+            character_data["info"]["path"]
         )
         loaded_character_attributes = objects.CharacterAttributes(
-            character_data["basic_attributes"],
-            character_data["special_attributes"],
-            character_data["harm_tracks"],
-            character_data["wound_thresholds"],
-            character_data["damage_dice"]
+            character_data["attributes"]["basic_attributes"],
+            character_data["attributes"]["special_attributes"],
+            character_data["attributes"]["harm_tracks"],
+            character_data["attributes"]["wound_thresholds"],
+            character_data["attributes"]["damage_reduction"],
+            character_data["attributes"]["damage_dice"]
         )
-        loaded_character = objects.Character(loaded_character_info, loaded_character_attributes)
+        loaded_character = objects.Character(
+            info=loaded_character_info, 
+            attributes=loaded_character_attributes, 
+            xp=character_data["xp"], 
+            abilities=character_data["abilities"], 
+            inventory=character_data["inventory"], 
+            moves=character_data["moves"]
+        )
         print(f"Character loaded successfully from {filename}")
         print_character_details(loaded_character)
         return loaded_character 
@@ -232,5 +248,5 @@ def load_character(character):
         print(f"An error occurred while loading the character: {e}")
     except FileNotFoundError:
         print(f"Character file not found: {filename}")
-    return None 
+    return None
 

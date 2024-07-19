@@ -1,0 +1,62 @@
+{
+    "Desertborne": {
+        "name": "Desertborne",
+        "abilities": "Heat Resilience",
+        "special_attributes": {}
+      },
+    "Groveborne": {
+        "name": "Groveborne",
+        "abilities": "Forest Expertise",
+        "special_attributes": {}
+      },
+    "Highborne": {
+        "name": "Highborne",
+        "abilities": "Noble Parley",
+        "special_attributes": {}
+      },
+    "Loreborne": {
+        "name": "Loreborne",
+        "abilities": "Lore Expertise",
+        "special_attributes": {}
+      },
+    "Orderborne": {
+        "name": "Orderborne",
+        "abilities": "Order Defiance",
+        "special_attributes": {}
+      },
+    "Ridgeborne": {
+        "name": "Ridgeborne",
+        "abilities": "",
+        "special_attributes": {"Armor": 1}
+      },
+    "Skyborne": {
+        "name": "Skyborne",
+        "abilities": "Ally Recovery",
+        "special_attributes": {}
+      },
+    "Seaborne": {
+        "name": "Seaborne",
+        "abilities": "Sea Resilience",
+        "special_attributes": {}
+      },
+    "Slyborne": {
+        "name": "Slyborne",
+        "abilities": "Criminal Insight",
+        "special_attributes": {}
+      },
+      "Underborne": {
+        "name": "Underborne",
+        "abilities": "Darkness Defense",
+        "special_attributes": {}
+      },
+    "Wanderborne": {
+        "name": "Wanderborne",
+        "abilities": "Nomad Camp",
+        "special_attributes": {}
+      },
+    "Wildborne": {
+        "name": "Wildborne",
+        "abilities": "Wild Stealth",
+        "special_attributes": {}
+      }
+}
