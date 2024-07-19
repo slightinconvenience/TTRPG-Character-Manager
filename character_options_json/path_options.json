@@ -1,0 +1,42 @@
+{
+    "Mage": {
+        "name": "Mage",
+        "basic_attributes": {},
+        "special_attributes": {},
+        "harm_tracks": {"Mental": 1},
+        "wound_thresholds": {},
+        "damage_die": {"Physical": "1d6"},
+        "path_passives": ["Magic Potential", "Channeled Through Me", "Sphere Touched"],
+        "path_moves": ["Channel", "Manifest", "Spell Defense"]
+    }, 
+    "Priest": {
+        "name": "Priest",
+        "basic_attributes": {},
+        "special_attributes": {},
+        "harm_tracks": {"Spiritual": 1},
+        "wound_thresholds": {},
+        "damage_die": {"Physical": "1d6"},
+        "path_passives": ["Devotion", "Devotions Weapon"],
+        "path_moves": ["Pray", "Orison", "Petition"]
+    },
+    "Rogue": {
+        "name": "Rogue",
+        "basic_attributes": {},
+        "special_attributes": {},
+        "harm_tracks": {},
+        "wound_thresholds": {"Physical": 1},
+        "damage_die": {"Physical": "1d6"},
+        "path_passives": ["Trickery", "Hidden Knife"],
+        "path_moves": ["Tricks of the Trade", "Sneak Attack"]
+    },
+    "Warrior": {
+        "name": "Warrior",
+        "basic_attributes": {},
+        "special_attributes": {},
+        "harm_tracks": {"Physical": 2},
+        "wound_thresholds": {},
+        "damage_die": {"Physical": "1d6"},
+        "path_passives": ["Fighting Style"],
+        "path_moves": ["Reckless Attack", "My Life for Yours"]
+    }
+}

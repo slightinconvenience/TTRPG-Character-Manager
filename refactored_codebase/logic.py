@@ -133,7 +133,7 @@ def create_character():
     ancestry_data = Ancestry.load_ancestry_data(selected_ancestry)
     profession_data = Profession.load_profession_data(selected_profession)
     community_data = Community.load_community_data(selected_community)
-    #path_data = get_path_data(selected_path)
+    path_data = Path.load_path_data(selected_path)
 
     # create character instance with selected options
     new_character_info = objects.CharacterInfo(name, age, level, selected_ancestry, selected_profession, selected_community, selected_path)
@@ -144,9 +144,9 @@ def create_character():
     Ancestry.ancestry_update(new_character, ancestry_data)
     Profession.profession_update(new_character, profession_data)
     Community.community_update(new_character, community_data)
-    #Path.path_update(new_character, path_data)
+    Path.path_update(new_character, path_data)
     
-    # choose attribute improvements 
+    # choose attribute improvements 6
     new_character.basic_attributes = attribute_improvements(new_character)
 
     # print character information

@@ -103,7 +103,7 @@ class Community:
 
         if 'special_attributes' in community_data and community_data['special_attributes']:
             for key, value in community_data['special_attributes'].items():
-                if key in character.special_attributes.special_attributes:
+                if key in character.attributes.special_attributes:
                     character.attributes.special_attributes[key] += value
                 else:
                     character.attributes.special_attributes[key] = value
@@ -124,16 +124,26 @@ class Path:
         # Handle health modifiers
         self.harm_tracks.update(health_modifier) # update harm tracks with health modifier
 
+    def load_path_data(path_name):
+        with open('character_options_json/path_options.json', 'r') as file:
+            paths = json.load(file)
+            # Access the path data by key
+            path_data = paths.get(path_name)
+            if path_data:
+                return path_data
+            else:
+                return None
+
     def path_update(character, path_data):
         # update character with path data
-        character.path = path_data['name']
-        character.basic_attributes.update(path_data['basic_attributes'])
-        character.special_attributes.update(path_data['special_attributes'])
-        character.harm_tracks.update(path_data['harm_tracks'])
-        character.wound_thresholds.update(path_data['wound_thresholds'])
-        character.damage_die = path_data['damage_die']
-        character.path_passives.update(path_data['path_passives'])
-        character.path_moves.update(path_data['path_moves'])
+        character.info.path = path_data['name']
+        character.attributes.basic_attributes.update(path_data['basic_attributes'])
+        character.attributes.special_attributes.update(path_data['special_attributes'])
+        character.attributes.harm_tracks.update(path_data['harm_tracks'])
+        character.attributes.wound_thresholds.update(path_data['wound_thresholds'])
+        character.attributes.damage_die = path_data['damage_die']
+        character.abilities.update(path_data['path_passives'])
+        character.moves.update(path_data['path_moves'])
 
 class Character:
     # class to represent the character
